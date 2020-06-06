@@ -6,8 +6,22 @@
 </head>
 <body>
     <h1>{{month}}, {{year}} </h1>
-    {% for entry in month_entries %}
-        <li><a href="{% url 'finances:detail' entry.id %}">{{entry.name}}</a></li>
+    <p>Total spent: R${{ total_expense }}</p>
+    <p>Total incomes: R${{ total_income }}</p>
+    <p>Savings: R${{ savings }}</p>
+
+    <h3>{{month}} expenses</h3>
+    <ul>
+    {% for e in month_expenses %}
+        <li><a href="{% url 'finances:detail' e.id %}">{{e.name}}</a>: R${{e.amount}} - at day {{e.date.day}}</li>
     {% endfor %}
+    </ul>
+
+    <h3>{{month}} incomes</h3>
+    <ul>
+    {% for i in month_incomes %}
+        <li><a href="{% url 'finances:detail' i.id %}">{{i.name}}</a>: R${{i.amount}} - at day {{i.date.day}}</li>
+    {% endfor %}
+    </ul>
 </body>
 </html>
