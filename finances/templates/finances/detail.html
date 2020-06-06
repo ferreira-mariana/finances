@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Finances</title>
+</head>
+<body>
+    {% if entry.entry_type == 'in' %}
+        <h1>Income: {{ entry.name }}</h1>
+    {% else %}
+        <h1>Expense: {{ entry.name }}</h1>
+    {% endif %}
+    <p>Amount: {{ entry.amount }}</p>
+    <p>Date: {{ entry.date }}</p>
+    <p>Category: {{ entry.category }}</p>
+</body>
+</html>

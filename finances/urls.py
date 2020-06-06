@@ -2,6 +2,9 @@ from django.urls import path
 
 from . import views
 
+app_name = 'finances'
 urlpatterns = [
+    path('<int:entry_id>/', views.detail, name='detail'),
+    path('month/<int:year>/<int:month>/', views.month, name='month'),
     path('', views.index, name='index')
 ]

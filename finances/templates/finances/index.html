@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Finances</title>
+</head>
+<body>
+    <h1>Finances index</h1>
+    {% if latest_entry_list %}
+        <h2>Latest entries</h2>
+        <ul>
+            {% for entry in latest_entry_list %}
+                <li><a href="{% url 'finances:detail' entry.id %}">{{entry.name}}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No entries are available.</p>
+    {% endif %}
+
+    {% if latest_expense_list %}
+        <h2>Latest expenses</h2>
+        <ul>
+            {% for entry in latest_expense_list %}
+                <li><a href="/finances/{{ entry.id }}/">{{entry.name}}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No expenses are available.</p>
+    {% endif %}
+
+    {% if latest_income_list %}
+        <h2>Latest incomes</h2>
+        <ul>
+            {% for entry in latest_income_list %}
+                <li><a href="/finances/{{ entry.id }}/">{{entry.name}}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No incomes are available.</p>
+    {% endif %}
+</body>
+</html>
