@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Finances</title>
+</head>
+<body>
+    <h1>{{month}}, {{year}} </h1>
+    {% for entry in month_entries %}
+        <li><a href="{% url 'finances:detail' entry.id %}">{{entry.name}}</a></li>
+    {% endfor %}
+</body>
+</html>

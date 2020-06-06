@@ -21,7 +21,7 @@
         <h2>Latest expenses</h2>
         <ul>
             {% for entry in latest_expense_list %}
-                <li><a href="/finances/{{ entry.id }}/">{{entry.name}}</a></li>
+                <li><a href="{% url 'finances:detail' entry.id %}">{{entry.name}}</a></li>
             {% endfor %}
         </ul>
     {% else %}
@@ -32,7 +32,7 @@
         <h2>Latest incomes</h2>
         <ul>
             {% for entry in latest_income_list %}
-                <li><a href="/finances/{{ entry.id }}/">{{entry.name}}</a></li>
+                <li><a href="{% url 'finances:detail' entry.id %}">{{entry.name}}</a></li>
             {% endfor %}
         </ul>
     {% else %}
