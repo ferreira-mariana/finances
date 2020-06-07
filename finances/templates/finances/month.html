@@ -23,5 +23,12 @@
         <li><a href="{% url 'finances:detail' i.id %}">{{i.name}}</a>: R${{i.amount}} - at day {{i.date.day}}</li>
     {% endfor %}
     </ul>
+
+    <h3>Categories</h3>
+    <ul>
+    {% for name, amount in categories_dict.items %}
+        <li>{{name}}, {{amount}}</li>
+    {% endfor %}  
+    </ul>
 </body>
 </html>

@@ -26,6 +26,16 @@ def month(request, year, month):
     total_expense = sum(e.amount for e in expense_list)
     total_income = sum(i.amount for i in income_list)
     savings = total_income - total_expense
+
+    categories_names = []
+    for e in expense_list: 
+        categories_names.append(e.category)
+    categories_amount = []
+    for name in categories_names:
+        amount = sum(e.amount for e in expense_list if e.category == name)
+        categories_amount.append(amount)
+    categories_dict = {categories_names[i]: categories_amount[i] for i in range(len(categories_names))}
+    
     month_name = datetime.date(year, month, 1).strftime("%B")
     context = {
         'month_expenses': expense_list,
@@ -33,6 +43,7 @@ def month(request, year, month):
         'total_expense': total_expense,
         'total_income': total_income,
         'savings': savings,
+        'categories_dict': categories_dict,
         'year': year,
         'month': month_name,
     }
