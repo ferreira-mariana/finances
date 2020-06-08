@@ -10,6 +10,8 @@
     <p>You've just added {{ entry_added }}!</p>
     {% endif %}
 
+    <a href="{% url 'finances:month' current_year current_month %}"><button>See current month details</button></a>
+
     {% if latest_entry_list %}
         <h2>Latest entries</h2>
         <ul>

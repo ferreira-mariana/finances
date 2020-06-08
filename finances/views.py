@@ -7,20 +7,23 @@ from .forms import AddNewEntry
 import datetime
 
 def index(request):
-    if request.method == 'POST':
-        entry_added = get_object_or_404(AccountEntry.objects.order_by('-id')[:1])
-        print(entry_added)
-    else:
-        entry_added = ''
-
     latest_entry_list = AccountEntry.objects.order_by('-date')[:5]
     latest_expense_list = AccountEntry.objects.filter(entry_type='out')[:5]
     latest_income_list = AccountEntry.objects.filter(entry_type='in')[:5]
+    date = datetime.date.today()
+
+    if request.method == 'POST':
+        entry_added = get_object_or_404(AccountEntry.objects.order_by('-id')[:1])
+    else:
+        entry_added = ''
+
     context = {
         'latest_entry_list': latest_entry_list,
         'latest_expense_list': latest_expense_list,
         'latest_income_list': latest_income_list,
-        'entry_added': entry_added
+        'entry_added': entry_added,
+        'current_year': date.year,
+        'current_month': date.month,
     }
     return render(request, 'finances/index.html', context)
 
