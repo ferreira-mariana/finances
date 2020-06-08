@@ -38,6 +38,10 @@ def month(request, year, month):
     total_income = sum(i.amount for i in income_list)
     savings = total_income - total_expense
 
+    #data for charts
+    labels = ['income', 'expense']
+    data = [total_income, total_expense]
+
     categories_names = []
     for e in expense_list: 
         categories_names.append(e.category)
@@ -57,6 +61,8 @@ def month(request, year, month):
         'categories_dict': categories_dict,
         'year': year,
         'month': month_name,
+        'labels': labels,
+        'data': data,
     }
     return render(request, 'finances/month.html', context)
 
