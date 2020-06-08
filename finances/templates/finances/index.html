@@ -6,6 +6,10 @@
 </head>
 <body>
     <h1>Finances index</h1>
+    {% if entry_added != "" %}
+    <p>You've just added {{ entry_added }}!</p>
+    {% endif %}
+
     {% if latest_entry_list %}
         <h2>Latest entries</h2>
         <ul>

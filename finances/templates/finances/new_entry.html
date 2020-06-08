@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Finances</title>
+</head>
+<body>
+    <h1>Add new account entry</h1>
+
+    <form action="{% url 'finances:new_entry' %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type='submit' value='Save'>
+    </form>
+
+</body>
+</html>

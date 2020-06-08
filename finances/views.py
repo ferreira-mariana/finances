@@ -1,11 +1,18 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, get_list_or_404
 
 from .models import AccountEntry
+from .forms import AddNewEntry
 
 import datetime
 
 def index(request):
+    if request.method == 'POST':
+        entry_added = get_object_or_404(AccountEntry.objects.order_by('-id')[:1])
+        print(entry_added)
+    else:
+        entry_added = ''
+
     latest_entry_list = AccountEntry.objects.order_by('-date')[:5]
     latest_expense_list = AccountEntry.objects.filter(entry_type='out')[:5]
     latest_income_list = AccountEntry.objects.filter(entry_type='in')[:5]
@@ -13,6 +20,7 @@ def index(request):
         'latest_entry_list': latest_entry_list,
         'latest_expense_list': latest_expense_list,
         'latest_income_list': latest_income_list,
+        'entry_added': entry_added
     }
     return render(request, 'finances/index.html', context)
 
@@ -21,8 +29,8 @@ def detail(request, entry_id):
     return render(request, 'finances/detail.html', {'entry': entry})
 
 def month(request, year, month):    
-    expense_list = get_list_or_404(AccountEntry, date__year=year, date__month=month, entry_type='out')
-    income_list = get_list_or_404(AccountEntry, date__year=year, date__month=month, entry_type='in')
+    expense_list = get_list_or_404(AccountEntry.objects.order_by('-date'), date__year=year, date__month=month, entry_type='out')
+    income_list = get_list_or_404(AccountEntry.objects.order_by('-date'), date__year=year, date__month=month, entry_type='in')
     total_expense = sum(e.amount for e in expense_list)
     total_income = sum(i.amount for i in income_list)
     savings = total_income - total_expense
@@ -48,3 +56,21 @@ def month(request, year, month):
         'month': month_name,
     }
     return render(request, 'finances/month.html', context)
+
+def new_entry(request):
+    if request.method == 'POST':
+        form = AddNewEntry(request.POST)
+        if form.is_valid():
+            entry = AccountEntry(
+                name = request.POST['name'],
+                amount = request.POST['amount'],
+                category = request.POST['category'],
+                date = request.POST['date'],
+                entry_type = request.POST['entry_type'],
+            )
+            entry.save()
+            return index(request)
+    else:
+        form = AddNewEntry()
+
+    return render(request, 'finances/new_entry.html', {'form': form})
