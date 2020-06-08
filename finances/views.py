@@ -39,18 +39,31 @@ def month(request, year, month):
     savings = total_income - total_expense
 
     #data for charts
-    labels = ['income', 'expense']
-    data = [total_income, total_expense]
+    if savings > 0:
+        labels = ['income', 'expense', 'savings']
+        data = [total_income, total_expense, savings]
+        savings_message = 'You saved R${}! :D '.format(savings)
+    else:
+        labels = ['income', 'expense']
+        data = [total_income, total_expense]
+        if savings == 0:
+            savings_message = 'You spent exactly what you earned.'
+        else:
+            savings_message = 'You spent more R${} than you earned :('.format(-savings)
 
     categories_names = []
     for e in expense_list: 
-        categories_names.append(e.category)
+        if not (e.category in categories_names):
+            categories_names.append(e.category)
     categories_amount = []
-    for name in categories_names:
+    colors = ["#8e5ea2", "#FFB946","#3e95cd","#F7685B", "#3cba9f"] #colors for bar chart
+    background_colors = []
+    for index, name in enumerate(categories_names):
         amount = sum(e.amount for e in expense_list if e.category == name)
         categories_amount.append(amount)
+        background_colors.append(colors[index % len(colors)]) 
     categories_dict = {categories_names[i]: categories_amount[i] for i in range(len(categories_names))}
-    
+
     month_name = datetime.date(year, month, 1).strftime("%B")
     context = {
         'month_expenses': expense_list,
@@ -59,10 +72,14 @@ def month(request, year, month):
         'total_income': total_income,
         'savings': savings,
         'categories_dict': categories_dict,
+        'categories_names': categories_names,
+        'categories_amount': categories_amount,
+        'background_colors': background_colors,
         'year': year,
         'month': month_name,
         'labels': labels,
         'data': data,
+        'savings_message': savings_message,
     }
     return render(request, 'finances/month.html', context)
 
