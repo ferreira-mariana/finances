@@ -23,6 +23,8 @@
         <p>No entries are available.</p>
     {% endif %}
 
+    <a href="{% url 'finances:new_entry' %}"><button>Add new entry</button></a>
+
     {% if latest_expense_list %}
         <h2>Latest expenses</h2>
         <ul>
