@@ -36,7 +36,7 @@ def month(request, year, month):
     income_list = get_list_or_404(AccountEntry.objects.order_by('-date'), date__year=year, date__month=month, entry_type='in')
     total_expense = sum(e.amount for e in expense_list)
     total_income = sum(i.amount for i in income_list)
-    savings = total_income - total_expense
+    savings = round( total_income - total_expense, 2 )
 
     #data for charts
     if savings > 0:
