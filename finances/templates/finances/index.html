@@ -1,46 +1,60 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <h1>Finances index</h1>
-    {% if entry_added != "" %}
-    <p>You've just added {{ entry_added }}!</p>
-    {% endif %}
+    <div class='top'>
+        <h1>Finances index</h1>
+        {% if entry_added != "" %}
+        <p>You've just added {{ entry_added }}!</p>
+        {% endif %}
 
-    <a href="{% url 'finances:month' current_year current_month %}"><button>See current month details</button></a>
+        <a href="{% url 'finances:new_entry' %}"><button>Add new entry</button></a>
+    </div>
 
-    {% if latest_entry_list %}
-        <h2>Latest entries</h2>
-        <ul>
-            {% for entry in latest_entry_list %}
-                <li><a href="{% url 'finances:detail' entry.id %}">{{entry.name}}</a>: R${{entry.amount}}</li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>No entries are available.</p>
-    {% endif %}
+    <div class="container-flex">
+        <div class="card-flex">
+            {% if latest_entry_list %}
+                <h2>Latest entries</h2>
+                <ul>
+                    {% for entry in latest_entry_list %}
+                        <li><a href="{% url 'finances:detail' entry.id %}">{{entry.name}}</a>: R${{entry.amount}} - {{entry.date}}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No entries are available.</p>
+            {% endif %}
+        </div>
 
-    <a href="{% url 'finances:new_entry' %}"><button>Add new entry</button></a>
+        <div>
+            <a class="current-month" href="{% url 'finances:month' current_year current_month %}"><button>See month details</button></a>
+        </div>
+    </div>
 
-    {% if latest_expense_list %}
-        <h2>Latest expenses</h2>
-        <ul>
-            {% for entry in latest_expense_list %}
-                <li><a href="{% url 'finances:detail' entry.id %}">{{entry.name}}</a>: R${{entry.amount}}</li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>No expenses are available.</p>
-    {% endif %}
+    <div class="container-flex">
+        <div class="card-flex">
+            {% if latest_expense_list %}
+                <h2>Latest expenses</h2>
+                <ul>
+                    {% for entry in latest_expense_list %}
+                        <li><a href="{% url 'finances:detail' entry.id %}">{{entry.name}}</a>: R${{entry.amount}} - {{entry.date}}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No expenses are available.</p>
+            {% endif %}
+        </div>
 
-    {% if latest_income_list %}
-        <h2>Latest incomes</h2>
-        <ul>
-            {% for entry in latest_income_list %}
-                <li><a href="{% url 'finances:detail' entry.id %}">{{entry.name}}</a>: R${{entry.amount}}</li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>No incomes are available.</p>
-    {% endif %}
+        <div class="card-flex">
+            {% if latest_income_list %}
+                <h2>Latest incomes</h2>
+                <ul>
+                    {% for entry in latest_income_list %}
+                        <li><a href="{% url 'finances:detail' entry.id %}">{{entry.name}}</a>: R${{entry.amount}} - {{entry.date}}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No incomes are available.</p>
+            {% endif %}
+        </div>
+    </div>
 
 {% endblock %}

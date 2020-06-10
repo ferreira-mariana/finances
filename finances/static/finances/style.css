@@ -1,3 +1,109 @@
+/*css reset*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+}
+
+/*fonts*/
+
+@import url('https://fonts.googleapis.com/css2?family=Sarabun&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins@400;600&family=Sarabun&display=swap');
+
+/*styles*/
+
+/*general styles*/
+
 body {
     background: #f0f0f0;
+}
+
+.container {
+    max-width: 920px;
+    margin: 0 auto;
+}
+
+h1, h2, h3, p, ul, li {
+    font-family: 'Poppins', sans-serif;
+}
+
+h1 {
+    color: #334D6E;
+    font-size: 2em;
+}
+
+h2 {
+    color: #192A3E;
+    font-size: 1.4em;
+    margin: 10px 0;
+}
+
+li {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+    color: #334D6E;
+    cursor: pointer;
+}
+
+button {
+    background-color: #2ED47A;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    color: #fafafa;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/*index style*/
+
+.top {
+    padding: 40px 0;
+}
+
+.top h1, button {
+    display: inline;
+}
+
+.top a {
+    float: right;
+}
+
+.container-flex {
+    margin: 40px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-flex {
+    background-color: #fafafa;
+    width: 35%;
+    padding: 15px;
+    box-shadow: -3px 4px #C2CFE0;
+    border-radius: 15px;
+}
+
+.current-month button {
+    background-color: #f0f0f0;
+    color: #885AF8;
+    border: #885AF8 solid 2px;
 }
