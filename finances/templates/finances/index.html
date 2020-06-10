@@ -20,7 +20,7 @@
                 <h2>Latest entries</h2>
                 <ul>
                     {% for entry in latest_entry_list %}
-                        <li><a href="{% url 'finances:detail' entry.id %}">{{entry.name}}</a>: R${{entry.amount}} - {{entry.date}}</li>
+                        <li><a href="{% url 'finances:detail' entry.id %}">{{entry.name}}</a><span>: R${{entry.amount}}</span> <span class="card-date">{{entry.date}}</span></li>
                     {% endfor %}
                 </ul>
             {% else %}
@@ -28,8 +28,10 @@
             {% endif %}
         </div>
 
-        <div>
-            <a class="current-month" href="{% url 'finances:month' current_year current_month %}"><button>See month details</button></a>
+        <div class="flex-right">
+            {% load static %}
+            <img src="{% static "finances/images/graph.svg" %}"> 
+            <a class="current-month" href="{% url 'finances:month' current_year current_month %}"><p>Click to see this month details</p></a>
         </div>
     </div>
 
@@ -39,7 +41,7 @@
                 <h2>Latest expenses</h2>
                 <ul>
                     {% for entry in latest_expense_list %}
-                        <li><a href="{% url 'finances:detail' entry.id %}">{{entry.name}}</a>: R${{entry.amount}} - {{entry.date}}</li>
+                        <li><a href="{% url 'finances:detail' entry.id %}">{{entry.name}}</a>:<span> R${{entry.amount}}</span> <span class="card-date"> {{entry.date}}</span></li>
                     {% endfor %}
                 </ul>
             {% else %}
@@ -52,7 +54,7 @@
                 <h2>Latest incomes</h2>
                 <ul>
                     {% for entry in latest_income_list %}
-                        <li><a href="{% url 'finances:detail' entry.id %}">{{entry.name}}</a>: R${{entry.amount}} - {{entry.date}}</li>
+                        <li><a href="{% url 'finances:detail' entry.id %}">{{entry.name}}</a>:<span> R${{entry.amount}}</span> <span class="card-date">{{entry.date}}</span></li>
                     {% endfor %}
                 </ul>
             {% else %}

@@ -21,7 +21,7 @@ time, mark, audio, video {
 
 /*fonts*/
 
-@import url('https://fonts.googleapis.com/css2?family=Sarabun&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap');
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins@400;600&family=Sarabun&display=swap');
 
@@ -39,7 +39,8 @@ body {
 }
 
 h1, h2, h3, p, ul, li {
-    font-family: 'Poppins', sans-serif;
+    /* font-family: 'Poppins', sans-serif; */
+    font-family: 'Source Sans Pro', sans-serif;
 }
 
 h1 {
@@ -74,22 +75,33 @@ button {
     cursor: pointer;
 }
 
+header {
+    padding: 20px 20%;
+    background-color: #fafafa;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0 6px 31px -2px rgba(0, 0, 0, 0.1);
+}
+
+header p {
+    font-size: 1.3em;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 900;
+    color: #334D6E;
+    display: inline;
+    position: relative;
+    bottom: 8px;
+}
+
+header img {
+    height: 40px;
+    vertical-align: sub;
+}
+
 /*index style*/
 
-.top {
-    padding: 40px 0;
-}
-
-.top h1, button {
-    display: inline;
-}
-
-.top a {
-    float: right;
-}
-
 .container-flex {
-    margin: 40px 0;
+    margin: 40px;
     display: flex;
     justify-content: space-between;
 }
@@ -102,8 +114,30 @@ button {
     border-radius: 15px;
 }
 
-.current-month button {
-    background-color: #f0f0f0;
+.card-flex ul li, ul li {
+    line-height: 40px;
+}
+
+.card-flex .card-date {
+    float: right;
+    color: #999;
+}
+
+.container-flex img {
+    width: 250px;
+}
+
+.flex-right {
+    min-height: 300px;
+}
+
+.current-month p {
     color: #885AF8;
-    border: #885AF8 solid 2px;
+    border-bottom: #885AF8 solid 2px;
+    width: 240px;
+}
+.current-month p:hover {
+    transition: .1s;
+    color: #885AF8;
+    border-bottom: #885AF8 solid 4px;
 }
