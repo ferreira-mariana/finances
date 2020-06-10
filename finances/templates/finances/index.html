@@ -1,14 +1,18 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <div class='top'>
+    {% comment %} <div class='top'>
         <h1>Finances index</h1>
         {% if entry_added != "" %}
         <p>You've just added {{ entry_added }}!</p>
         {% endif %}
 
         <a href="{% url 'finances:new_entry' %}"><button>Add new entry</button></a>
-    </div>
+    </div> {% endcomment %}
+
+    {% if entry_added != "" %}
+        <p>You've just added {{ entry_added }}!</p>
+    {% endif %}
 
     <div class="container-flex">
         <div class="card-flex">
