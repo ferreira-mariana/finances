@@ -10,9 +10,11 @@
 <body>
     <header>
         <div>
-            {% load static %}
-            <img src="{% static "finances/images/calculator.svg" %}"> 
-            <p>Kinko</p>
+            <a href="{% url 'finances:index' %}">
+                {% load static %}
+                <img src="{% static "finances/images/calculator.svg" %}"> 
+                <p>Kinko</p>
+            </a>
         </div>
         <a href="{% url 'finances:new_entry' %}"><button>Add new entry</button></a>
     </header>

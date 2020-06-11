@@ -37,10 +37,10 @@ body {
 
 .container {
     max-width: 920px;
-    margin: 0 auto;
+    margin: 40px auto;
 }
 
-h1, h2, h3, p, ul, li, span {
+h1, h2, h3, p, ul, li, span, label, input {
     font-family: 'Poppins', sans-serif;
 }
 
@@ -66,13 +66,12 @@ a {
     cursor: pointer;
 }
 
-button {
+button, .save-button {
     background-color: #2ED47A;
     padding: 10px;
     border: none;
     border-radius: 6px;
     color: #fafafa;
-    font-family: 'Poppins', sans-serif;
     font-weight: 600;
     cursor: pointer;
 }
@@ -111,7 +110,7 @@ header img {
 }
 
 .container-flex {
-    margin: 40px;
+    margin: 0 0 40px 0;
     display: flex;
     justify-content: space-between;
 }
@@ -157,7 +156,7 @@ header img {
     color: #999;
 }
 
-.container-flex img {
+.container-flex .graph {
     width: 250px;
 }
 
@@ -177,4 +176,53 @@ header img {
     transition: .1s;
     color: #885AF8;
     border-bottom: #885AF8 solid 4px;
+}
+
+/*form*/
+
+.card-new-entry {
+    background-color: #fafafa;
+    width: 40%;
+    padding: 15px;
+    box-shadow: -3px 4px #C2CFE0;
+    border-radius: 15px;
+}
+
+.form-input {
+    padding: 10px;
+    border: none;
+    border-bottom: 1px #999 solid;
+    border-radius: 5px 5px 0 0;
+    background: #fafafa;
+}
+.form-input:focus {
+    outline: none;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+}
+
+.card-new-entry label {
+    padding-top: 10px;
+    display: block;
+} 
+
+.card-new-entry span {
+    color: #999;
+    font-weight: normal;
+    font-size: 0.9em;
+    display: block;
+    margin: 5px 0 10px 0;
+}
+
+.save-button {
+    display: block;
+    margin: 5px auto;
+}
+
+.container-img {
+    width: 50%;
+}
+
+.scene-img {
+    width: 100%;
 }

@@ -18,7 +18,7 @@
 
         <div class="flex-right">
             {% load static %}
-            <img src="{% static "finances/images/graph.svg" %}"> 
+            <img class="graph" src="{% static "finances/images/graph.svg" %}"> 
             <a class="previous-month" href="{% url 'finances:month' previous_year previous_month %}"><p>See previous month</p></a>
         </div>
     </div>

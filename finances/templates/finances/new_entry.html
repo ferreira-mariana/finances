@@ -1,19 +1,30 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <h1>Add new account entry</h1>
-
-    {% if entry_added != "" %}
-        <p class="new-entry-added">You've just added {{ entry_added }}!</p>
-        <a class="back" href="{% url 'finances:index'  %}"><i class="material-icons">arrow_back</i><span>Back to home</span></a>
-    {% else %}
-        <form action="{% url 'finances:new_entry' %}" method="post">
-        {% csrf_token %}
-        {{ form }}
-        <input type='submit' value='Save'>
-        </form>
-    {% endif %}
-
+    <h1>Add new entry</h1>
     
+    <div class="container-flex">
+
+        <div class="card-new-entry">
+        
+        {% if entry_added != "" %}
+            <p class="new-entry-added">You've just added {{ entry_added }}!</p>
+            <a class="back" href="{% url 'finances:index'  %}"><i class="material-icons">arrow_back</i><span>Back to home</span></a>
+        {% else %}
+            <form action="{% url 'finances:new_entry' %}" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <input class= "save-button" type='submit' value='Save'>
+            </form>
+        {% endif %}
+
+        </div>
+
+        <div class="container-img">
+            {% load static %}
+            <img class="scene-img" src="{% static "finances/images/example-scene-1.svg" %}"> 
+        </div>
+
+    </div>
 
 {% endblock %}

@@ -5,11 +5,11 @@ class AddNewEntry(forms.Form):
         ('in', 'income'),
         ('out', 'expense')
     )
-    name = forms.CharField(help_text='Describe your expense or your income.', max_length=100)
-    amount = forms.FloatField(min_value=0.01)
-    category = forms.CharField(max_length=100)
-    date = forms.DateField(help_text='Use this date format 2020-01-01.')
-    entry_type = forms.ChoiceField(widget=forms.RadioSelect, choices=EntryType)
+    name = forms.CharField(widget=forms.TextInput(attrs={'class' : 'form-input'}), help_text='Describe your expense or your income.', max_length=100)
+    amount = forms.FloatField(widget=forms.NumberInput(attrs={'class' : 'form-input'}), min_value=0.01)
+    category = forms.CharField(widget=forms.TextInput(attrs={'class' : 'form-input'}), max_length=100)
+    date = forms.DateField(widget=forms.DateInput(attrs={'class' : 'form-input'}), help_text='Use this date format 2020-01-01.')
+    entry_type = forms.ChoiceField(widget=forms.RadioSelect(attrs={'class' : 'radio-input'}), choices=EntryType)
 
     def clean(self):
         super(AddNewEntry, self).clean() # data from the form is fetched using super function 
