@@ -214,6 +214,10 @@ header img {
     margin: 5px 0 10px 0;
 }
 
+.card-new-entry li {
+    line-height: 0;
+}
+
 .save-button {
     display: block;
     margin: 5px auto;
@@ -225,4 +229,8 @@ header img {
 
 .scene-img {
     width: 100%;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%)
+
 }
