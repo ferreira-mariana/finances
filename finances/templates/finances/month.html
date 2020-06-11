@@ -2,9 +2,13 @@
 {% block content %}
 
     <h1>{{month}}, {{year}} </h1>
+    {% if not data %}
+        <p>No entries this month</p>
+    {% else %}
     <p>Total spent: R${{ total_expense }}</p>
     <p>Total incomes: R${{ total_income }}</p>
     <p>{{ savings_message }}</p>
+    {% endif %}
 
     <div style="width:40%;">
         <canvas id="pie-chart"></canvas>

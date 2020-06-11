@@ -1,37 +1,25 @@
 {% extends "base.html" %}
 {% block content %}
 
-    {% comment %} <div class='top'>
-        <h1>Finances index</h1>
-        {% if entry_added != "" %}
-        <p>You've just added {{ entry_added }}!</p>
-        {% endif %}
-
-        <a href="{% url 'finances:new_entry' %}"><button>Add new entry</button></a>
-    </div> {% endcomment %}
-
-    {% if entry_added != "" %}
-        <p>You've just added {{ entry_added }}!</p>
-    {% endif %}
-
     <div class="container-flex">
-        <div class="card-flex">
-            {% if latest_entry_list %}
-                <h2>Latest entries</h2>
-                <ul>
-                    {% for entry in latest_entry_list %}
-                        <li><a href="{% url 'finances:detail' entry.id %}">{{entry.name}}</a><span>: R${{entry.amount}}</span> <span class="card-date">{{entry.date}}</span></li>
-                    {% endfor %}
-                </ul>
+        <div>
+            <h1>{{month}}, {{year}} </h1>
+            <div class="chart" style="width:100%;">
+                <canvas id="pie-chart"></canvas>
+            </div>
+            {% if not data %}
+                <p>No entries this month</p>
             {% else %}
-                <p>No entries are available.</p>
+                <p><i class="material-icons icon-spent">arrow_upward</i> Spent <span> R$ {{ total_expense }}</span></p>
+                <p><i class="material-icons icon-income">arrow_downward</i> Incomes <span> R$ {{ total_income }}</span></p>
+                <p><i class="material-icons icon-save">attach_money</i>{{ savings_message }}</p>
             {% endif %}
         </div>
 
         <div class="flex-right">
             {% load static %}
             <img src="{% static "finances/images/graph.svg" %}"> 
-            <a class="current-month" href="{% url 'finances:month' current_year current_month %}"><p>Click to see this month details</p></a>
+            <a class="previous-month" href="{% url 'finances:month' previous_year previous_month %}"><p>See previous month</p></a>
         </div>
     </div>
 
@@ -62,5 +50,19 @@
             {% endif %}
         </div>
     </div>
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <script>
+        new Chart(document.getElementById('pie-chart').getContext('2d'), {
+            type: 'doughnut',
+            data: {
+                datasets: [{
+                    label: 'Total',
+                    data: {{ data|safe }},
+                    backgroundColor: [ '#109CF1', '#F7685B', '#2ED47A' ],
+                }],
+                labels: {{ labels|safe }}
+            },
+            options: { responsive: true }
+        });
+    </script>
 {% endblock %}

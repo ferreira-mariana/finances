@@ -3,10 +3,17 @@
 
     <h1>Add new account entry</h1>
 
-    <form action="{% url 'finances:new_entry' %}" method="post">
-    {% csrf_token %}
-    {{ form }}
-    <input type='submit' value='Save'>
-    </form>
+    {% if entry_added != "" %}
+        <p class="new-entry-added">You've just added {{ entry_added }}!</p>
+        <a class="back" href="{% url 'finances:index'  %}"><i class="material-icons">arrow_back</i><span>Back to home</span></a>
+    {% else %}
+        <form action="{% url 'finances:new_entry' %}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type='submit' value='Save'>
+        </form>
+    {% endif %}
+
+    
 
 {% endblock %}

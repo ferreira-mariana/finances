@@ -6,32 +6,16 @@ from .forms import AddNewEntry
 
 import datetime
 
-def index(request):
-    latest_entry_list = AccountEntry.objects.order_by('-date')[:5]
-    latest_expense_list = AccountEntry.objects.filter(entry_type='out')[:5]
-    latest_income_list = AccountEntry.objects.filter(entry_type='in')[:5]
-    date = datetime.date.today()
-
-    if request.method == 'POST':
-        entry_added = get_object_or_404(AccountEntry.objects.order_by('-id')[:1])
+def get_previous_month(year, month):
+    if month == 1:
+        previous_month = 12
+        previous_year = year - 1
     else:
-        entry_added = ''
+        previous_month = month - 1
+        previous_year = year
+    return {'previous_year': previous_year, 'previous_month': previous_month}
 
-    context = {
-        'latest_entry_list': latest_entry_list,
-        'latest_expense_list': latest_expense_list,
-        'latest_income_list': latest_income_list,
-        'entry_added': entry_added,
-        'current_year': date.year,
-        'current_month': date.month,
-    }
-    return render(request, 'finances/index.html', context)
-
-def detail(request, entry_id):
-    entry = get_object_or_404(AccountEntry, pk=entry_id)
-    return render(request, 'finances/detail.html', {'entry': entry})
-
-def month(request, year, month):    
+def get_month_context(request, year, month):
     expense_list = get_list_or_404(AccountEntry.objects.order_by('-date'), date__year=year, date__month=month, entry_type='out')
     income_list = get_list_or_404(AccountEntry.objects.order_by('-date'), date__year=year, date__month=month, entry_type='in')
     total_expense = sum(e.amount for e in expense_list)
@@ -42,14 +26,14 @@ def month(request, year, month):
     if savings > 0:
         labels = ['income', 'expense', 'savings']
         data = [total_income, total_expense, savings]
-        savings_message = 'You saved R${}! :D '.format(savings)
+        savings_message = 'You saved R$ {}! :D '.format(savings)
     else:
         labels = ['income', 'expense']
         data = [total_income, total_expense]
         if savings == 0:
             savings_message = 'You spent exactly what you earned.'
         else:
-            savings_message = 'You spent more R${} than you earned :('.format(-savings)
+            savings_message = 'You spent more R$ {} than you earned :('.format(-savings)
 
     categories_names = []
     for e in expense_list: 
@@ -81,6 +65,37 @@ def month(request, year, month):
         'data': data,
         'savings_message': savings_message,
     }
+    return context
+
+def index(request):
+    latest_expense_list = AccountEntry.objects.filter(entry_type='out')[:5]
+    latest_income_list = AccountEntry.objects.filter(entry_type='in')[:5]
+    date = datetime.date.today()
+
+    if request.method == 'POST':
+        entry_added = get_object_or_404(AccountEntry.objects.order_by('-id')[:1])
+    else:
+        entry_added = ''
+
+    context = {
+        'latest_expense_list': latest_expense_list,
+        'latest_income_list': latest_income_list,
+        'entry_added': entry_added,
+        'current_year': date.year,
+        'current_month': date.month,
+    }
+    month_context = get_month_context(request, date.year, date.month)
+    previous_month = get_previous_month(date.year, date.month)
+    context = {**context, **month_context, **previous_month}
+    print(context)
+    return render(request, 'finances/index.html', context)
+
+def detail(request, entry_id):
+    entry = get_object_or_404(AccountEntry, pk=entry_id)
+    return render(request, 'finances/detail.html', {'entry': entry})
+
+def month(request, year, month):    
+    context = get_month_context(request, year, month)
     return render(request, 'finances/month.html', context)
 
 def new_entry(request):
@@ -95,8 +110,8 @@ def new_entry(request):
                 entry_type = request.POST['entry_type'],
             )
             entry.save()
-            return index(request)
+            return render(request, 'finances/new_entry.html', {'entry_added': entry})
     else:
         form = AddNewEntry()
 
-    return render(request, 'finances/new_entry.html', {'form': form})
+    return render(request, 'finances/new_entry.html', {'form': form, "entry_added": ""})

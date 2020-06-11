@@ -25,6 +25,8 @@ time, mark, audio, video {
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins@400;600&family=Sarabun&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+
 /*styles*/
 
 /*general styles*/
@@ -38,14 +40,14 @@ body {
     margin: 0 auto;
 }
 
-h1, h2, h3, p, ul, li {
-    /* font-family: 'Poppins', sans-serif; */
-    font-family: 'Source Sans Pro', sans-serif;
+h1, h2, h3, p, ul, li, span {
+    font-family: 'Poppins', sans-serif;
 }
 
 h1 {
     color: #334D6E;
     font-size: 2em;
+    padding-bottom: 20px;
 }
 
 h2 {
@@ -98,12 +100,44 @@ header img {
     vertical-align: sub;
 }
 
+.chart {
+    margin-bottom: 20px;
+}
+
 /*index style*/
+
+.new-entry-added  {
+    margin: 20px;
+}
 
 .container-flex {
     margin: 40px;
     display: flex;
     justify-content: space-between;
+}
+
+.container-flex p {
+    line-height: 22px;
+}
+
+.container-flex span {
+    font-weight: 900;
+    color: #334D6E;
+}
+
+.container i {
+    font-size: 20px;
+    position: relative;
+    top: 5px;
+}
+.icon-spent {
+    color: #F7685B;
+}
+.icon-income {
+    color: #3e95cd;
+}
+.icon-save {
+    color: #2ED47A;
 }
 
 .card-flex {
@@ -129,14 +163,17 @@ header img {
 
 .flex-right {
     min-height: 300px;
+    width: 35%;
 }
 
-.current-month p {
+.previous-month p {
     color: #885AF8;
     border-bottom: #885AF8 solid 2px;
-    width: 240px;
+    width: 60%;
+    text-align: center;
+    margin: 0 40px;
 }
-.current-month p:hover {
+.previous-month p:hover {
     transition: .1s;
     color: #885AF8;
     border-bottom: #885AF8 solid 4px;

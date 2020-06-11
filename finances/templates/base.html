@@ -5,13 +5,14 @@
     {% block title %}<title>Finances</title>{% endblock %}
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'finances/style.css' %}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
     <header>
         <div>
             {% load static %}
             <img src="{% static "finances/images/calculator.svg" %}"> 
-            <p>Little pig</p>
+            <p>Kinko</p>
         </div>
         <a href="{% url 'finances:new_entry' %}"><button>Add new entry</button></a>
     </header>
