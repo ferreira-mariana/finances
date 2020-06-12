@@ -29,7 +29,7 @@
                 <h2>{{month}} expenses</h2>
                 <ul>
                 {% for e in month_expenses %}
-                    <li><a href="{% url 'finances:detail' e.id %}">{{e.name}}</a>:<span> R${{e.amount}}</span> <span class="card-date"> {{e.date}}</span></li>
+                    <li>{{e.name}}</a>:<span> R${{e.amount}}</span> <span class="card-date"> {{e.date}}</span></li>
                 {% endfor %}
                 </ul>
             </div>
@@ -39,7 +39,7 @@
                 <h2>{{month}} incomes</h2>
                 <ul>
                 {% for i in month_incomes %}
-                    <li><a href="{% url 'finances:detail' i.id %}">{{i.name}}</a>:<span> R${{i.amount}}</span> <span class="card-date"> {{i.date}}</span></li>
+                    <li>{{i.name}}</a>:<span> R${{i.amount}}</span> <span class="card-date"> {{i.date}}</span></li>
                 {% endfor %}
                 </ul>
             </div>

@@ -30,7 +30,7 @@
                 <h2>Expenses</h2>
                 <ul>
                     {% for entry in month_expenses %}
-                        <li><a href="{% url 'finances:detail' entry.id %}">{{entry.name}}</a>:<span> R$ {{entry.amount}}</span> <span class="card-date"> {{entry.date}}</span></li>
+                        <li>{{entry.name}}</a>:<span> R$ {{entry.amount}}</span> <span class="card-date"> {{entry.date}}</span></li>
                     {% endfor %}
                 </ul>
             {% else %}
@@ -45,7 +45,7 @@
                 <h2>Incomes</h2>
                 <ul>
                     {% for entry in month_incomes %}
-                        <li><a href="{% url 'finances:detail' entry.id %}">{{entry.name}}</a>:<span> R$ {{entry.amount}}</span> <span class="card-date">{{entry.date}}</span></li>
+                        <li>{{entry.name}}</a>:<span> R$ {{entry.amount}}</span> <span class="card-date">{{entry.date}}</span></li>
                     {% endfor %}
                 </ul>
             {% else %}

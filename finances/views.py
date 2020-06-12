@@ -87,12 +87,7 @@ def index(request):
     month_context = get_month_context(request, date.year, date.month)
     previous_month = get_previous_month(date.year, date.month)
     context = {**context, **month_context, **previous_month}
-    print(context)
     return render(request, 'finances/index.html', context)
-
-def detail(request, entry_id):
-    entry = get_object_or_404(AccountEntry, pk=entry_id)
-    return render(request, 'finances/detail.html', {'entry': entry})
 
 def month(request, year, month):    
     context = get_month_context(request, year, month)
