@@ -48,12 +48,17 @@ h1 {
     color: #334D6E;
     font-size: 2em;
     padding-bottom: 20px;
+    text-align: center;
 }
 
 h2 {
     color: #192A3E;
     font-size: 1.4em;
     margin: 10px 0;
+}
+
+h3 {
+    color: #192A3E;
 }
 
 li {
@@ -141,7 +146,7 @@ header img {
 
 .card-flex {
     background-color: #fafafa;
-    width: 35%;
+    width: 320px;
     padding: 15px;
     box-shadow: -3px 4px #C2CFE0;
     border-radius: 15px;
@@ -176,6 +181,13 @@ header img {
     transition: .1s;
     color: #885AF8;
     border-bottom: #885AF8 solid 4px;
+}
+
+.categories-list {
+    margin-top: 15px;
+    padding-left: 10px;
+    box-shadow: -3px 0px #C2CFE0;
+    border-radius: 2px;
 }
 
 /*form*/
@@ -223,6 +235,10 @@ header img {
     margin: 5px auto;
 }
 
+.card-new-entry .back-button, .card-new-entry a span {
+    display: inline;
+}
+
 .container-img {
     width: 50%;
 }
@@ -233,4 +249,10 @@ header img {
     top: 50%;
     transform: translateY(-50%)
 
+}
+
+/*month*/
+
+.month-card {
+    width: 45%;
 }

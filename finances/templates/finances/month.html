@@ -2,41 +2,49 @@
 {% block content %}
 
     <h1>{{month}}, {{year}} </h1>
-    {% if not data %}
-        <p>No entries this month</p>
-    {% else %}
-    <p>Total spent: R${{ total_expense }}</p>
-    <p>Total incomes: R${{ total_income }}</p>
-    <p>{{ savings_message }}</p>
-    {% endif %}
-
-    <div style="width:40%;">
-        <canvas id="pie-chart"></canvas>
+    <div class="container-flex">
+        <div class='month-card'>
+            <div class="chart" style="width:100%;">
+                <canvas id="pie-chart"></canvas>
+            </div>
+            {% if not data %}
+                <p>No entries this month</p>
+            {% else %}
+                <p><i class="material-icons icon-spent">arrow_upward</i> Spent <span> R$ {{ total_expense }}</span></p>
+                <p><i class="material-icons icon-income">arrow_downward</i> Incomes <span> R$ {{ total_income }}</span></p>
+                <p><i class="material-icons icon-save">attach_money</i>{{ savings_message }}</p>
+            {% endif %}
+        </div>
+        <div class="month-card">
+            <h3>Categories</h3>
+            <div style="width:100%;">
+                <canvas id="bar-chart"></canvas>
+            </div>
+        </div>
     </div>
 
-    <h3>{{month}} expenses</h3>
-    <ul>
-    {% for e in month_expenses %}
-        <li><a href="{% url 'finances:detail' e.id %}">{{e.name}}</a>: R${{e.amount}} - at day {{e.date.day}}</li>
-    {% endfor %}
-    </ul>
-
-    <h3>{{month}} incomes</h3>
-    <ul>
-    {% for i in month_incomes %}
-        <li><a href="{% url 'finances:detail' i.id %}">{{i.name}}</a>: R${{i.amount}} - at day {{i.date.day}}</li>
-    {% endfor %}
-    </ul>
-
-    <h3>Categories</h3>
-    <div style="width:40%;">
-        <canvas id="bar-chart"></canvas>
+    <div class="container-flex">
+        <div>
+            <div class="card-flex">
+                <h2>{{month}} expenses</h2>
+                <ul>
+                {% for e in month_expenses %}
+                    <li><a href="{% url 'finances:detail' e.id %}">{{e.name}}</a>:<span> R${{e.amount}}</span> <span class="card-date"> {{e.date}}</span></li>
+                {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div>
+            <div class="card-flex">
+                <h2>{{month}} incomes</h2>
+                <ul>
+                {% for i in month_incomes %}
+                    <li><a href="{% url 'finances:detail' i.id %}">{{i.name}}</a>:<span> R${{i.amount}}</span> <span class="card-date"> {{i.date}}</span></li>
+                {% endfor %}
+                </ul>
+            </div>
+        </div>
     </div>
-    <ul>
-    {% for name, amount in categories_dict.items %}
-        <li>{{name}}: R${{amount}}</li>
-    {% endfor %}  
-    </ul>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
     <script>
