@@ -16,8 +16,8 @@ def get_previous_month(year, month):
     return {'previous_year': previous_year, 'previous_month': previous_month}
 
 def get_month_context(request, year, month):
-    expense_list = get_list_or_404(AccountEntry.objects.order_by('-date'), date__year=year, date__month=month, entry_type='out')
-    income_list = get_list_or_404(AccountEntry.objects.order_by('-date'), date__year=year, date__month=month, entry_type='in')
+    expense_list = AccountEntry.objects.order_by('-date').filter(date__year=year, date__month=month, entry_type='out')
+    income_list = AccountEntry.objects.order_by('-date').filter(date__year=year, date__month=month, entry_type='in')
     total_expense = sum(e.amount for e in expense_list)
     total_income = sum(i.amount for i in income_list)
     savings = round( total_income - total_expense, 2 )
@@ -68,18 +68,14 @@ def get_month_context(request, year, month):
     return context
 
 def index(request):
-    latest_expense_list = AccountEntry.objects.filter(entry_type='out')[:5]
-    latest_income_list = AccountEntry.objects.filter(entry_type='in')[:5]
     date = datetime.date.today()
-
+    
     if request.method == 'POST':
         entry_added = get_object_or_404(AccountEntry.objects.order_by('-id')[:1])
     else:
         entry_added = ''
 
     context = {
-        'latest_expense_list': latest_expense_list,
-        'latest_income_list': latest_income_list,
         'entry_added': entry_added,
         'current_year': date.year,
         'current_month': date.month,

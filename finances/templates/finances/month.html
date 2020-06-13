@@ -27,20 +27,28 @@
         <div>
             <div class="card-flex">
                 <h2>{{month}} expenses</h2>
-                <ul>
-                {% for e in month_expenses %}
-                    <li>{{e.name}}</a>:<span> R${{e.amount}}</span> <span class="card-date"> {{e.date}}</span></li>
-                {% endfor %}
+                {% if month_expenses %}
+                    <ul>
+                    {% for e in month_expenses %}
+                        <li>{{e.name}}</a>:<span> R${{e.amount}}</span> <span class="card-date"> {{e.date}}</span></li>
+                    {% endfor %}
+                {% else %}
+                    <p>No expenses are available.</p>
+                {% endif %}
                 </ul>
             </div>
         </div>
         <div>
             <div class="card-flex">
                 <h2>{{month}} incomes</h2>
-                <ul>
-                {% for i in month_incomes %}
-                    <li>{{i.name}}</a>:<span> R${{i.amount}}</span> <span class="card-date"> {{i.date}}</span></li>
-                {% endfor %}
+                {% if month_incomes %}
+                    <ul>
+                    {% for i in month_incomes %}
+                        <li>{{i.name}}</a>:<span> R${{i.amount}}</span> <span class="card-date"> {{i.date}}</span></li>
+                    {% endfor %}
+                {% else %}
+                    <p>No incomes are available.</p>
+                {% endif %}
                 </ul>
             </div>
         </div>

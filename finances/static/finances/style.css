@@ -146,9 +146,14 @@ header img {
 .card-flex {
     background-color: #fafafa;
     width: 320px;
+    height: 280px;
+    overflow: scroll;
     padding: 15px;
     box-shadow: -3px 4px #C2CFE0;
     border-radius: 15px;
+}
+.card-chart {
+    height: 350px;
 }
 
 .card-flex ul li, ul li {
@@ -227,6 +232,11 @@ header img {
 
 .card-new-entry li {
     line-height: 0;
+}
+
+.radio-input:focus {
+    outline: 1px #F7685B solid;
+    outline-style: dotted;
 }
 
 .save-button {
