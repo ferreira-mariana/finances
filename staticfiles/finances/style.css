@@ -1,0 +1,267 @@
+/*css reset*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+}
+
+/*styles*/
+
+/*general styles*/
+
+body {
+    background: #f0f0f0;
+}
+
+.container {
+    max-width: 920px;
+    margin: 40px auto;
+}
+
+h1, h2, h3, p, ul, li, button, span, label, input {
+    font-family: 'Poppins', sans-serif;
+}
+
+h1 {
+    color: #334D6E;
+    font-size: 2em;
+    padding-bottom: 20px;
+    text-align: center;
+}
+
+h2 {
+    color: #192A3E;
+    font-size: 1.4em;
+    margin: 10px 0;
+}
+
+h3 {
+    color: #192A3E;
+}
+
+li {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+    color: #334D6E;
+    cursor: pointer;
+}
+
+button, .save-button {
+    background-color: #2ED47A;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    color: #fafafa;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .2s;
+}
+button:hover, .save-button:hover {
+    background-color: #1FE27C;
+    transition: .2s;
+}
+button:focus, .save-button:focus {
+    outline: none;
+}
+
+header {
+    padding: 20px 20%;
+    background-color: #fafafa;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0 6px 31px -2px rgba(0, 0, 0, 0.1);
+}
+
+header p {
+    font-size: 1.3em;
+    font-weight: 900;
+    color: #334D6E;
+    display: inline;
+    position: relative;
+    bottom: 8px;
+}
+
+header img {
+    height: 40px;
+    vertical-align: sub;
+}
+
+.chart {
+    margin-bottom: 20px;
+}
+
+/*index style*/
+
+.new-entry-added  {
+    margin: 20px;
+}
+
+.container-flex {
+    margin: 0 0 40px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.container-flex p {
+    line-height: 22px;
+}
+
+.container-flex span {
+    font-weight: 900;
+    color: #334D6E;
+}
+
+.container i {
+    font-size: 20px;
+    position: relative;
+    top: 5px;
+}
+.icon-spent {
+    color: #F7685B;
+}
+.icon-income {
+    color: #3e95cd;
+}
+.icon-save {
+    color: #2ED47A;
+}
+
+.card-flex {
+    background-color: #fafafa;
+    width: 320px;
+    height: 280px;
+    overflow: scroll;
+    padding: 15px;
+    box-shadow: -3px 4px #C2CFE0;
+    border-radius: 15px;
+}
+.card-chart {
+    height: 350px;
+}
+
+.card-flex ul li, ul li {
+    line-height: 40px;
+}
+
+.card-flex .card-date {
+    float: right;
+    color: #999;
+}
+
+.container-flex .graph {
+    width: 250px;
+}
+
+.flex-right {
+    min-height: 300px;
+    width: 35%;
+}
+
+.previous-month p {
+    color: #885AF8;
+    border-bottom: #885AF8 solid 2px;
+    width: 60%;
+    text-align: center;
+    margin: 0 40px;
+}
+.previous-month p:hover {
+    transition: .1s;
+    color: #885AF8;
+    border-bottom: #885AF8 solid 4px;
+}
+
+.categories-list {
+    margin-top: 15px;
+    padding-left: 10px;
+    box-shadow: -3px 0px #C2CFE0;
+    border-radius: 2px;
+}
+
+/*form*/
+
+.card-new-entry {
+    background-color: #fafafa;
+    width: 40%;
+    padding: 15px;
+    box-shadow: -3px 4px #C2CFE0;
+    border-radius: 15px;
+}
+
+.form-input {
+    padding: 10px;
+    border: none;
+    border-bottom: 1px #999 solid;
+    border-radius: 5px 5px 0 0;
+    background: #fafafa;
+}
+.form-input:focus {
+    outline: none;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+}
+
+.card-new-entry label {
+    padding-top: 10px;
+    display: block;
+} 
+
+.card-new-entry span {
+    color: #999;
+    font-weight: normal;
+    font-size: 0.9em;
+    display: block;
+    margin: 5px 0 10px 0;
+}
+
+.card-new-entry li {
+    line-height: 0;
+}
+
+.radio-input:focus {
+    outline: 1px #F7685B solid;
+    outline-style: dotted;
+}
+
+.save-button {
+    display: block;
+    margin: 5px auto;
+}
+
+.card-new-entry .back-button, .card-new-entry a span {
+    display: inline;
+}
+
+.container-img {
+    width: 50%;
+}
+
+.scene-img {
+    width: 100%;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%)
+
+}
+
+/*month*/
+
+.month-card {
+    width: 45%;
+}
