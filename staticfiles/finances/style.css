@@ -145,15 +145,18 @@ header img {
 
 .card-flex {
     background-color: #fafafa;
-    width: 320px;
+    width: 400px;
     height: 280px;
-    overflow: scroll;
+    overflow: auto;
+    overflow-x: hidden;
     padding: 15px;
     box-shadow: -3px 4px #C2CFE0;
     border-radius: 15px;
 }
 .card-chart {
-    height: 350px;
+    height: auto;
+    overflow: hidden;
+    height: auto;
 }
 
 .card-flex ul li, ul li {
@@ -165,21 +168,30 @@ header img {
     color: #999;
 }
 
-.container-flex .graph {
+.container-flex .graph-img {
     width: 250px;
+}
+.container-chart {
+    height: 400px;
 }
 
 .flex-right {
-    min-height: 300px;
+    height: 310px;
     width: 35%;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .previous-month p {
     color: #885AF8;
-    border-bottom: #885AF8 solid 2px;
-    width: 60%;
+    border: #885AF8 solid 2px;
+    border-radius: 8px;
+    padding: 3px;
+    width: 54%;
     text-align: center;
-    margin: 0 40px;
+    margin: 25px 40px;
+    transition: .1s;
 }
 .previous-month p:hover {
     transition: .1s;
@@ -234,6 +246,11 @@ header img {
     line-height: 0;
 }
 
+.errorlist li {
+    line-height: 1;
+    color: #F7685B;
+}
+
 .radio-input:focus {
     outline: 1px #F7685B solid;
     outline-style: dotted;
@@ -264,4 +281,22 @@ header img {
 
 .month-card {
     width: 45%;
+}
+
+/*scrollbar*/
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+
+::-webkit-scrollbar-thumb {
+    background: #C2CFE0; 
+    border-radius: 5px;
+}
+  
+::-webkit-scrollbar-thumb:hover {
+    background: #888; 
 }

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <div class="container-flex">
+    <div class="container-flex container-chart">
         <div class="card-flex card-chart">
             <h1>{{month}}, {{year}} </h1>
             <div class="chart" style="width:100%;">
@@ -18,7 +18,7 @@
 
         <div class="flex-right">
             {% load static %}
-            <img class="graph" src="{% static "finances/images/graph.svg" %}"> 
+            <img class="graph-img" src="{% static "finances/images/graph.svg" %}"> 
             <a class="previous-month" href="{% url 'finances:month' previous_year previous_month %}"><p>See previous month</p></a>
         </div>
     </div>
