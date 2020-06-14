@@ -96,7 +96,7 @@ def new_entry(request):
             entry = AccountEntry(
                 name = request.POST['name'],
                 amount = request.POST['amount'],
-                category = request.POST['category'],
+                category = request.POST['category'].capitalize(),
                 date = request.POST['date'],
                 entry_type = request.POST['entry_type'],
             )
