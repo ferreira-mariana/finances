@@ -1,5 +1,5 @@
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render, get_object_or_404, get_list_or_404
+from django.shortcuts import render, get_object_or_404
 
 from .models import AccountEntry
 from .forms import AddNewEntry
@@ -69,14 +69,8 @@ def get_month_context(request, year, month):
 
 def index(request):
     date = datetime.date.today()
-    
-    if request.method == 'POST':
-        entry_added = get_object_or_404(AccountEntry.objects.order_by('-id')[:1])
-    else:
-        entry_added = ''
 
     context = {
-        'entry_added': entry_added,
         'current_year': date.year,
         'current_month': date.month,
     }
